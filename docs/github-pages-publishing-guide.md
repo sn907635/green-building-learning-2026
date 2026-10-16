@@ -8,7 +8,7 @@
 - 心得簡報：https://sn907635.github.io/green-building-learning-2026/slides.html
 - GitHub 儲存庫：https://github.com/sn907635/green-building-learning-2026
 
-這個網站是公開網站，任何人取得網址都可以瀏覽。請只放適合公開的內容。
+請只放適合公開的內容。
 
 ## 為什麼使用 GitHub Pages
 
