@@ -29,7 +29,7 @@
 | `.github/workflows/deploy-pages.yml` | 自動發佈流程設定 |
 | `docs/github-pages-publishing-guide.md` | 本操作指南 |
 
-首頁檔案必須命名為 `index.html)，並放在儲存庫根目錄，GitHub Pages 才能以網站根網址開啟首頁。簡報放在根目錄，所以網址最後加上 `/slides.html)。
+首頁檔案必須命名為 `index.html`，並放在儲存庫根目錄，GitHub Pages 才能以網站根網址開啟首頁。簡報放在根目錄，所以網址最後加上 `/slides.html`。
 
 ## 第一次設定或重新確認 Pages
 
@@ -85,7 +85,7 @@
 
 ### 工作流程成功，但網站沒有更新
 
-先等一兩分鐘再重新載入。接著確認修改已提交到 `main`，並檢查 Pages 網址與檔名是否正確。首頁網址使用根目錄的 `index.html)；心得簡報使用 `/slides.html`。
+先等一兩分鐘再重新載入。接著確認修改已提交到 `main`，並檢查 Pages 網址與檔名是否正確。首頁網址使用根目錄的 `index.html`；心得簡報使用 `/slides.html`。
 
 ### 網址顯示 404
 
