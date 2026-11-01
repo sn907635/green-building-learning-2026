@@ -6,8 +6,8 @@
     <meta name="theme-color" content="#10241e" />
     <meta name="description" content="探索全台單車路線、記錄騎乘足跡與爬坡挑戰。" />
     <title>BikeMaps Pro｜單車路線探索</title>
-    <script type="module" crossorigin src="./assets/index-CEjyQSxF.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CVSS37vJ.css">
+    <script type="module" crossorigin src="./assets/index-dCD0B-3X.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BVyXy5EE.css">
   </head>
   <body>
     <div class="app-shell">
@@ -90,10 +90,19 @@
 
         <section class="map-stage" aria-label="路線地圖">
           <div id="map" role="application" aria-label="台灣單車路線地圖"></div>
+          <section class="map-overlay navigation-panel" id="navigation-panel" aria-label="畫面內導航" hidden>
+            <div class="navigation-heading"><div><p class="eyebrow">ON-SCREEN NAVIGATION</p><strong id="navigation-route-name">路線導航</strong></div><button class="icon-button navigation-close" id="navigation-stop" type="button" aria-label="結束導航" title="結束導航">×</button></div>
+            <p class="navigation-instruction" id="navigation-instruction" aria-live="polite">等待 GPS 定位</p>
+            <div class="navigation-next"><strong id="navigation-turn-distance">—</strong><span id="navigation-road-name">沿 OSM 路徑前進</span></div>
+            <div class="progress-track navigation-progress"><i id="navigation-progress-bar"></i></div>
+            <div class="navigation-summary"><span id="navigation-status">正在準備導航</span><strong id="navigation-remaining">剩餘 — km</strong></div>
+            <div class="navigation-actions"><button class="button button-outline" id="navigation-pause" type="button">暫停</button><button class="button button-outline" id="navigation-center" type="button">回到定位</button><button class="button button-primary" id="navigation-replan" type="button" hidden>重新規劃</button></div>
+            <small class="navigation-privacy">GPS 軌跡在此裝置計算；規劃路線時會將出發座標送至 OSM 路由服務。</small>
+          </section>
           <div class="map-overlay map-title"><span class="map-title-icon">⌖</span><div><strong id="map-context-title">全台路線地圖</strong><small id="map-context-subtitle">選擇地圖標記查看路線詳情</small></div></div>
           <div class="map-overlay map-legend"><span><i class="legend-dot easy"></i>休閒</span><span><i class="legend-dot moderate"></i>中階</span><span><i class="legend-dot hard"></i>挑戰</span><span><i class="legend-dot extreme"></i>殿堂</span></div>
           <div class="map-actions"><button class="map-action-button" id="fit-routes" title="縮放至目前篩選路線">⛶ <span>顯示全部</span></button><button class="map-action-button" id="map-my-location" title="移至目前起點">◎ <span>我的位置</span></button></div>
-          <div class="map-disclaimer">選取路線可查看依 OSM 自行車路網計算的建議軌跡。</div>
+          <div class="map-disclaimer">選取路線規劃 OSM 軌跡，並可直接在地圖上導航。</div>
         </section>
       </main>
 
