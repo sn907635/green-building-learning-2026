@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10241e" />
+    <meta name="description" content="探索全台單車路線、記錄騎乘足跡與爬坡挑戰。" />
+    <title>BikeMaps Pro｜單車路線探索</title>
+    <script type="module" crossorigin src="./assets/index-46Ix9aUp.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-6MFDiFp9.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#explore" aria-label="BikeMaps Pro 首頁">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span class="brand-copy"><strong>BikeMaps</strong><small>PRO · RIDE YOUR WAY</small></span>
+        </a>
+        <nav class="main-nav" aria-label="主要導覽">
+          <button class="nav-link active" data-view="explore">探索路線</button>
+          <button class="nav-link" data-view="passport">騎乘足跡</button>
+          <button class="nav-link" data-view="settings">資料設定</button>
+        </nav>
+        <div class="topbar-status"><span class="live-dot"></span><span id="catalog-count">載入路線中</span></div>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar" aria-label="路線與設定">
+          <section class="view-pane active" id="explore-view">
+            <div class="sidebar-heading">
+              <div><p class="eyebrow">TAIWAN CYCLING</p><h1>找到下一段<br /><em>值得騎的路。</em></h1></div>
+              <button class="icon-button" id="refresh-view" aria-label="重新整理路線" title="重新整理">↻</button>
+            </div>
+
+            <section class="start-card" aria-labelledby="start-heading">
+              <div class="start-card-top"><div><p class="eyebrow">出發位置</p><h2 id="start-heading">從哪裡開始？</h2></div><span class="pin-icon">⌖</span></div>
+              <div class="start-display" id="start-display">尚未設定起點</div>
+              <button class="button button-gps" id="use-gps"><span aria-hidden="true">◎</span> 使用目前 GPS</button>
+              <form class="address-form" id="address-form">
+                <label class="sr-only" for="address-input">搜尋地址或地標</label>
+                <input id="address-input" autocomplete="street-address" placeholder="輸入地址或地標" />
+                <button class="button button-search" type="submit" aria-label="搜尋地址">搜尋</button>
+              </form>
+              <button class="text-button map-center-button" id="map-center-start" type="button">使用目前地圖中心作為起點</button>
+              <p class="privacy-note">地址搜尋會傳送至 OpenStreetMap Nominatim。<a href="https://operations.osmfoundation.org/policies/nominatim/" target="_blank" rel="noreferrer">使用政策</a></p>
+            </section>
+
+            <div class="catalog-toolbar">
+              <div><p class="eyebrow">ROUTE CATALOG</p><h2>路線探索 <span id="route-result-count">—</span></h2></div>
+              <button class="button button-outline button-compact" id="add-route-open">＋ 自訂</button>
+            </div>
+            <label class="search-box"><span aria-hidden="true">⌕</span><input id="route-search" placeholder="搜尋路線、縣市或地標" /><kbd>/</kbd></label>
+            <div class="filter-row">
+              <label class="sr-only" for="city-filter">依縣市篩選</label>
+              <select id="city-filter"><option value="all">全台縣市</option></select>
+              <label class="sr-only" for="difficulty-filter">依難度篩選</label>
+              <select id="difficulty-filter"><option value="all">全部難度</option><option value="1">★ 休閒</option><option value="2">★★ 初階</option><option value="3">★★★ 中階</option><option value="4">★★★★ 挑戰</option><option value="5">★★★★★ 殿堂</option></select>
+            </div>
+            <div class="quick-filters" role="group" aria-label="快速篩選">
+              <button class="filter-chip active" data-quick-filter="all">全部</button>
+              <button class="filter-chip" data-quick-filter="unvisited">尚未征服</button>
+              <button class="filter-chip" data-quick-filter="custom">我的路線</button>
+            </div>
+            <div class="route-list" id="route-list" aria-live="polite"></div>
+            <button class="button button-more" id="load-more" hidden>載入更多路線</button>
+          </section>
+
+          <section class="view-pane" id="passport-view" hidden>
+            <div class="sidebar-heading"><div><p class="eyebrow">YOUR RIDE LOG</p><h1>每一段路，<br /><em>都算數。</em></h1></div><span class="heading-symbol">✳</span></div>
+            <div id="profile-content"></div>
+          </section>
+
+          <section class="view-pane" id="settings-view" hidden>
+            <div class="sidebar-heading"><div><p class="eyebrow">PREFERENCES</p><h1>管理你的<br /><em>騎乘資料。</em></h1></div><span class="heading-symbol">⚙</span></div>
+            <div class="settings-stack">
+              <section class="settings-card"><div class="settings-card-heading"><div><p class="eyebrow">MAP DISPLAY</p><h2>地圖標記</h2></div></div>
+                <label class="setting-toggle"><span><strong>顯示路線標記</strong><small>開啟或隱藏地圖上的所有路線</small></span><input type="checkbox" id="pins-visible" checked /><i></i></label>
+                <label class="setting-toggle"><span><strong>顯示已征服路線</strong><small>關閉後只顯示尚未打卡的路線</small></span><input type="checkbox" id="show-visited" checked /><i></i></label>
+                <label class="setting-toggle"><span><strong>常駐顯示路線名稱</strong><small>大量標籤可能遮住地圖內容</small></span><input type="checkbox" id="show-labels" /><i></i></label>
+                <button class="text-button" id="restore-hidden">恢復所有隱藏的路線標記</button>
+              </section>
+              <section class="settings-card"><p class="eyebrow">CURATED ROUTES</p><h2>探索精選路線</h2><p class="muted">加入隨程式附上的精選路線資料，不會向外部服務查詢。</p><button class="button button-outline full-button" id="discover-routes">加入精選路線</button></section>
+              <section class="settings-card"><p class="eyebrow">BACKUP & RESTORE</p><h2>匯出或還原資料</h2><p class="muted">資料保存在這個瀏覽器。可匯入原本外掛匯出的 JSON 備份。</p><div class="button-row"><button class="button button-outline" id="export-data">↓ 匯出 JSON</button><button class="button button-outline" id="import-data">↑ 匯入備份</button><input id="import-file" type="file" accept="application/json,.json" hidden /></div></section>
+              <section class="settings-card"><p class="eyebrow">MAP & LOCATION SERVICES</p><h2>地圖與地址搜尋</h2><p class="muted">地圖只載入目前畫面範圍。地址搜尋只會在送出表單時查詢，不使用自動完成。</p><label class="form-field">地圖圖磚網址<input id="tile-endpoint" type="url" spellcheck="false" /></label><label class="form-field">圖磚來源標示<input id="tile-attribution" type="text" maxlength="120" /></label><label class="form-field">地址搜尋 API 網址<input id="geocoder-endpoint" type="url" spellcheck="false" /></label><button class="button button-outline full-button" id="save-map-services">儲存服務設定</button></section>
+              <section class="settings-card"><p class="eyebrow">LOCAL DATA</p><h2>本機資料</h2><div class="data-summary"><span>路線目錄</span><strong id="settings-route-count">—</strong></div><div class="data-summary"><span>已打卡</span><strong id="settings-visited-count">—</strong></div><div class="data-summary"><span>自訂路線</span><strong id="settings-custom-count">—</strong></div></section>
+              <p class="settings-footnote">GPS 需要安全連線（HTTPS 或 localhost）與定位權限。地圖使用 OpenStreetMap 圖磚；請勿大量自動載入。</p>
+            </div>
+          </section>
+        </aside>
+
+        <section class="map-stage" aria-label="路線地圖">
+          <div id="map" role="application" aria-label="台灣單車路線地圖"></div>
+          <div class="map-overlay map-title"><span class="map-title-icon">⌖</span><div><strong id="map-context-title">全台路線地圖</strong><small id="map-context-subtitle">選擇地圖標記查看路線詳情</small></div></div>
+          <div class="map-overlay map-legend"><span><i class="legend-dot easy"></i>休閒</span><span><i class="legend-dot moderate"></i>中階</span><span><i class="legend-dot hard"></i>挑戰</span><span><i class="legend-dot extreme"></i>殿堂</span></div>
+          <div class="map-actions"><button class="map-action-button" id="fit-routes" title="縮放至目前篩選路線">⛶ <span>顯示全部</span></button><button class="map-action-button" id="map-my-location" title="移至目前起點">◎ <span>我的位置</span></button></div>
+          <div class="map-disclaimer">路線標記代表路線終點位置；導航由 Google Maps 提供。</div>
+        </section>
+      </main>
+
+      <dialog class="modal route-modal" id="route-modal"><div class="modal-shell"><button class="modal-close" data-close-dialog aria-label="關閉">×</button><div id="route-detail-content"></div></div></dialog>
+      <dialog class="modal form-modal" id="custom-route-modal"><div class="modal-shell"><button class="modal-close" data-close-dialog aria-label="關閉">×</button><p class="eyebrow">CUSTOM ROUTE</p><h2>新增一條私房路線</h2><p class="muted">填寫路線座標，或先在地圖上點一下來帶入終點位置。</p><form id="custom-route-form" class="form-grid">
+        <label class="form-field full">路線名稱<input name="name" maxlength="60" required placeholder="例如：晨騎私房坡" /></label>
+        <label class="form-field">縣市<select name="city" id="custom-city" required></select></label>
+        <label class="form-field">難度<select name="difficulty"><option value="1">★ 休閒</option><option value="2">★★ 初階</option><option value="3" selected>★★★ 中階</option><option value="4">★★★★ 挑戰</option><option value="5">★★★★★ 殿堂</option></select></label>
+        <label class="form-field">起點緯度<input name="startLat" type="number" step="any" required /></label><label class="form-field">起點經度<input name="startLng" type="number" step="any" required /></label>
+        <label class="form-field">終點緯度<input name="endLat" type="number" step="any" required /></label><label class="form-field">終點經度<input name="endLng" type="number" step="any" required /></label>
+        <label class="form-field">距離（公里）<input name="distanceKm" type="number" min="0.1" max="1000" step="0.1" required value="10" /></label><label class="form-field">累計爬升（公尺）<input name="elevationGainM" type="number" min="0" max="10000" step="1" required value="200" /></label>
+        <label class="form-field full">路線介紹<textarea name="description" rows="3" maxlength="300" placeholder="路況、風景或補給資訊"></textarea></label>
+        <button class="text-button full" id="pick-endpoint" type="button">⌖ 在地圖上選擇終點</button>
+        <div class="form-actions full"><button class="button button-outline" type="button" data-close-dialog>取消</button><button class="button button-primary" type="submit">儲存路線</button></div>
+      </form></div></dialog>
+      <dialog class="modal ride-modal" id="ride-modal"><div class="modal-shell"><button class="modal-close" id="ride-close" aria-label="結束騎乘">×</button><p class="eyebrow">LIVE RIDE</p><h2 id="ride-name">即時騎乘</h2><p class="muted" id="ride-status">等待 GPS 定位</p><div class="ride-metrics"><div><strong id="ride-distance">0.0</strong><small>已騎公里</small></div><div><strong id="ride-speed">0</strong><small>km/h</small></div><div><strong id="ride-progress">0%</strong><small>路線進度</small></div><div><strong id="ride-elapsed">00:00</strong><small>騎乘時間</small></div></div><div class="progress-track"><i id="ride-progress-bar"></i></div><div class="ride-actions"><button class="button button-outline" id="ride-pause">暫停</button><button class="button button-outline" id="ride-simulate">模擬</button><button class="button button-primary" id="ride-finish">完成並打卡</button></div><p class="ride-privacy">定位資料只在目前瀏覽器計算；結束後不會上傳。</p></div></dialog>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <footer class="app-footer"><span>BikeMaps Pro · 探索台灣單車路線</span><span><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a> · <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noreferrer">修正地圖資料</a></span></footer>
+    </div>
+  </body>
+</html>
